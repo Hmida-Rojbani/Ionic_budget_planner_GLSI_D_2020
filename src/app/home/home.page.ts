@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { Expense } from '../interfaces/expense';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,39 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  reasonInput = '';
+  amountInput: number;
 
-  constructor() {}
+  totalExpenses = 0;
+
+  listExpenses: Expense[] = [];
+  constructor(private alertController: AlertController) {
+
+    console.log('reason', this.reasonInput);
+  }
+
+  clear(){
+    this.amountInput = null;
+    this.reasonInput = '' ;
+  }
+
+  addExpense() {
+
+    if (this.reasonInput.length === 0 || this.amountInput == null) {
+      this.alertController.create({
+        header: 'Invalid Inputs',
+        message: 'Please enter valid reason and amount',
+        buttons : ['Okay']
+      }).then(alertElt => alertElt.present());
+      return;
+    }
+
+    this.listExpenses.push({
+      reason: this.reasonInput,
+      amount: this.amountInput
+    });
+    this.totalExpenses += this.amountInput;
+    this.clear();
+  }
 
 }

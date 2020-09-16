@@ -1,20 +1,61 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      Budget Planner
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>New Expense</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-label position="floating">Expense Reason</ion-label>
+              <ion-input type="text" [(ngModel)]="reasonInput"></ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <ion-label position="floating">Expense Amount</ion-label>
+              <ion-input type="number" [(ngModel)]="amountInput"></ion-input>
+            </ion-item>
+            <div class="ion-margin-vertical ion-text-right">
+              <ion-button color="danger" (click)="clear()" fill="outline">
+                <ion-icon name="trash-bin-outline" slot="start"></ion-icon>
+                Clear
+              </ion-button>
+      
+              <ion-button (click)="addExpense()">
+                <ion-icon name="add-circle-sharp" slot="start"></ion-icon>
+                Add Expense
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-item *ngIf="totalExpenses > 0">
+          Total Expenses: {{totalExpenses}}€
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-list>
+          <ion-item *ngFor="let expense of listExpenses">
+            {{expense.reason}}: {{expense.amount}}€
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
