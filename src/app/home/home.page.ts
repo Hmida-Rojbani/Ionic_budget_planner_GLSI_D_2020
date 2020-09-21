@@ -42,5 +42,15 @@ export class HomePage {
     this.totalExpenses += this.amountInput;
     this.clear();
   }
+  
+  // remove expense from listExpenses and it's amount from totalExpenses
+  removeExpense(expense: Expense){
+    for(let i=0; i<this.listExpenses.length; i++){
+      if (this.listExpenses[i] == expense) {
+        this.totalExpenses -= this.listExpenses[i].amount;
+        this.listExpenses.splice(i, 1);
+      }
+    }
+  }
 
 }
