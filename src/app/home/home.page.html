@@ -51,7 +51,10 @@
       <ion-col size-md="6" offset-md="3">
         <ion-list>
           <ion-item *ngFor="let expense of listExpenses">
-            {{expense.reason}}: {{expense.amount}}€
+            <ion-label>{{expense.reason}}: {{expense.amount}}€</ion-label>
+            <ion-button color="danger" fill="outline" (click)="removeExpense(expense)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
           </ion-item>
         </ion-list>
       </ion-col>
