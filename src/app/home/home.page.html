@@ -52,6 +52,9 @@
         <ion-list>
           <ion-item *ngFor="let expense of listExpenses">
             {{expense.reason}}: {{expense.amount}}€
+            <ion-button (click)="deleteExpense(expense)" slot="end" fill="clear">
+              <ion-icon name="close-circle-outline" slot="icon-only" color="danger"></ion-icon>
+            </ion-button>
           </ion-item>
         </ion-list>
       </ion-col>

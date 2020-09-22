@@ -43,4 +43,9 @@ export class HomePage {
     this.clear();
   }
 
+  deleteExpense(expense: Expense) {
+    this.listExpenses = this.listExpenses.filter(exp => exp !== expense);
+    this.totalExpenses -= expense.amount;
+  }
+
 }
